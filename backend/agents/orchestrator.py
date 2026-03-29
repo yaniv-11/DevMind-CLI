@@ -36,7 +36,7 @@ Return ONLY this JSON, no explanation, no markdown:
 llm = ChatGroq(
     api_key=settings.groq_api_key,
     model_name=settings.groq_model,
-    temperature=0.0,    # deterministic — orchestrator must not hallucinate
+    temperature=0.0,    
     model_kwargs={"response_format": {"type": "json_object"}}
 )
 
