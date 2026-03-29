@@ -1,6 +1,8 @@
 # DevMind CLI 
 
-A local, AI-powered coding assistant that indexes your workspace and provides intelligent context-aware support from the terminal, powered by the Groq API. 
+A local, AI-powered coding assistant that indexes your workspace and provides intelligent context-aware support from the terminal. 
+
+<img width="762" height="565" alt="Screenshot 2026-03-27 213115" src="https://github.com/user-attachments/assets/27832c87-ebaf-4f8d-8315-a46be2b7d62f" />
 
 ##  Installation & Setup
 
