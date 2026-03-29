@@ -5,7 +5,7 @@ from backend.graph.state import DevMindState
 from backend.config import settings
 
 CHAT_PROMPT = """You are DevMind, an expert AI coding assistant.
-You are helping the user understand their codebase or answer general programming questions.
+You are helping the user understand their codebase or complex questions.
 
 Use the provided context to accurately answer the user's question.
 If the context isn't relevant, you can answer from your general knowledge, but prioritize the codebase context when applicable.
