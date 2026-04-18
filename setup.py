@@ -15,7 +15,9 @@ setup(
         "pydantic>=2.8.0",
         "chromadb>=0.5.0",
         "tree-sitter>=0.23.0",
-        "python-dotenv>=1.0.0"
+        "fastapi==0.115.0",
+        "uvicorn==0.30.0",
+        
     ],
     entry_points={
         "console_scripts": [
