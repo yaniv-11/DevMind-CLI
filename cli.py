@@ -8,6 +8,11 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
 
+try:
+    from rich_pixels import Pixels
+except ImportError:
+    Pixels = None
+
 app = typer.Typer(help="DevMind CLI")
 console = Console()
 
@@ -18,6 +23,7 @@ def interact():
     """
     from backend.config import settings
     from main import devmind_graph, DevMindState
+    from backend.logo.logo import display_logo_in_terminal
     
     if not settings.groq_api_key and "GROQ_API_KEY" not in os.environ:
         console.print("[bold red]Error: API Key missing![/bold red]")
@@ -27,8 +33,11 @@ def interact():
     if "GROQ_API_KEY" in os.environ and not settings.groq_api_key:
         settings.groq_api_key = os.environ["GROQ_API_KEY"]
 
-    console.print(Panel.fit("[bold magenta]Welcome to DevMind CLI![/bold magenta]\n", border_style="magenta"))
+    # Display DevMind logo
+    display_logo_in_terminal()
     
+    console.print(Panel.fit("[bold magenta]Welcome to DevMind CLI![/bold magenta]\n ", border_style="magenta"))
+
     with console.status("[bold green]Initializing local embedding models (first time only)...[/bold green]"):
         from backend.store.vector_store import query_chunks, get_collection
         collection = get_collection()
