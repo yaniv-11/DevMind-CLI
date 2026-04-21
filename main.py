@@ -7,9 +7,8 @@ from backend.graph.state import DevMindState
 from backend.graph.edges import (
     route_after_orchestrator,
     route_after_harvester,
-    route_after_reasoning,
-    route_after_code_writer,
-    route_after_validator
+    route_after_parallel_agents,
+    route_to_respond
 )
 from backend.agents.orchestrator      import orchestrator_node
 from backend.agents.context_harvester import context_harvester_node
@@ -45,10 +44,11 @@ def respond_node(state: DevMindState) -> DevMindState:
     }
     return state.model_copy(update={"response": response})
 
-# ── Build LangGraph ─────────────────────────────────────────────
+# ── Build LangGraph with Parallel Execution ──────────────────────
 def build_graph():
     graph = StateGraph(DevMindState)
 
+    # Add all nodes
     graph.add_node("orchestrator",       orchestrator_node)
     graph.add_node("context_harvester",  context_harvester_node)
     graph.add_node("reasoning_agent",    reasoning_agent_node)
@@ -60,41 +60,64 @@ def build_graph():
 
     graph.set_entry_point("orchestrator")
 
-    graph.add_conditional_edges("orchestrator",
+    # Orchestrator routes to first agent group (parallel)
+    graph.add_conditional_edges(
+        "orchestrator",
         route_after_orchestrator,
-        {"context_harvester": "context_harvester"}
+        {
+            "context_harvester": "context_harvester",
+            "reasoning_agent": "reasoning_agent",
+            "code_writer": "code_writer",
+            "memory_agent": "memory_agent",
+            "chat_agent": "chat_agent"
+        }
     )
-    graph.add_conditional_edges("context_harvester",
+    
+    # Context harvester routes to second agent group (parallel)
+    graph.add_conditional_edges(
+        "context_harvester",
         route_after_harvester,
         {
             "reasoning_agent": "reasoning_agent",
-            "code_writer":     "code_writer",
-            "chat_agent":      "chat_agent",
-            "respond":         "respond"
+            "memory_agent": "memory_agent",
+            "code_writer": "code_writer",
+            "chat_agent": "chat_agent"
         }
     )
-    graph.add_conditional_edges("reasoning_agent",
-        route_after_reasoning,
+    
+    # Reasoning and memory agents route to third group (parallel)
+    graph.add_conditional_edges(
+        "reasoning_agent",
+        route_after_parallel_agents,
         {
             "code_writer": "code_writer",
-            "chat_agent":  "chat_agent",
-            "respond":     "respond"
+            "validator": "validator",
+            "chat_agent": "chat_agent"
         }
     )
-    graph.add_conditional_edges("code_writer",
-        route_after_code_writer,
+    
+    graph.add_conditional_edges(
+        "memory_agent",
+        route_to_respond,
+        {"chat_agent": "chat_agent"}
+    )
+    
+    # Code writer routes to validator or respond
+    graph.add_conditional_edges(
+        "code_writer",
+        route_to_respond,
         {
             "validator": "validator",
-            "respond":   "respond"
+            "chat_agent": "chat_agent"
         }
     )
-    graph.add_conditional_edges("validator",
-        route_after_validator,
-        {"respond": "respond"}
-    )
+    
+    # Validator always goes to chat agent
+    graph.add_edge("validator", "chat_agent")
+    
+    # Chat agent and respond finish
     graph.add_edge("chat_agent", "respond")
-    graph.add_edge("respond", "memory_agent")
-    graph.add_edge("memory_agent", END)
+    graph.add_edge("respond", END)
 
     return graph.compile()
 
