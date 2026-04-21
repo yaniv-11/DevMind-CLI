@@ -1,0 +1,161 @@
+{
+  "project_conventions": [],
+  "past_fixes": [
+    {
+      "timestamp": "2026-03-28T17:52:32.441537",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User greeted the system",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-28T17:53:21.050524",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User greeted DevMind with a hello message",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-28T18:02:06.375498",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User sent a greeting message from the command line interface",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-28T18:03:51.573490",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User greeted the system",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-28T18:04:07.813682",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the overall flow of the project",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-29T02:56:12.338029",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User is asking about the number of agents involved in the project",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-29T03:20:53.557650",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User is asking for the number of agents in the project",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-29T03:21:50.032393",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the flow of user input to DevMind output",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-03-29T04:25:39.916142",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "Provide a summary of the project_memory.json file",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-12T09:07:08.708088",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "Determine the best search method for the DevMind project",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:14:50.420813",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the purpose and functionality of state.py",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:21:47.000257",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the state.py file",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:22:58.532635",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the purpose and functionality of state.py",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:27:20.172260",
+      "intent": "explain_code",
+      "file": null,
+      "summary": "Explain the states in state.py",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:29:43.774565",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User greeted the system",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:30:00.484166",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User greeted the system",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    },
+    {
+      "timestamp": "2026-04-19T07:34:08.619147",
+      "intent": "answer_question",
+      "file": null,
+      "summary": "User needs general information about the index",
+      "root_cause": null,
+      "fix_applied": false,
+      "validation_passed": null
+    }
+  ],
+  "known_files": [],
+  "language": null,
+  "frameworks": []
+}
