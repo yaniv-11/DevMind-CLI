@@ -58,7 +58,7 @@ def context_harvester_node(state: DevMindState) -> DevMindState:
         
         # Convert chunks to structured format for state
         structured_chunks = []
-        for chunk in chunks:
+        for idx, chunk in enumerate(chunks):
             metadata = chunk.get("metadata", {})
             structured_chunks.append({
                 "file": metadata.get("file", "unknown"),
@@ -66,7 +66,7 @@ def context_harvester_node(state: DevMindState) -> DevMindState:
                 "content": chunk.get("content", ""),
                 "relevance": chunk.get("final_score", 0.5),
                 "definitions": metadata.get("definitions", []),
-                "chunk_id": chunk.get("id")
+                "chunk_id": chunk.get("id", f"chunk_{idx}")  # Safe fallback with index
             })
         
         return state.model_copy(update={

@@ -55,4 +55,4 @@ def memory_agent_node(state: DevMindState) -> DevMindState:
 
     _save_memory(memory)
 
-    return state
+    return state.model_copy(update={})  # Return updated copy, not same object
