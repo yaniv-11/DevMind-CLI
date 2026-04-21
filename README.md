@@ -4,8 +4,87 @@ A local, AI-powered coding assistant that indexes your workspace and provides in
 
 <img width="762" height="565" alt="Screenshot 2026-03-27 213115" src="https://github.com/user-attachments/assets/27832c87-ebaf-4f8d-8315-a46be2b7d62f" />
 
-##  Installation & Setup
+Core Architecture
+ 1. Orchestrator Agent
+Classifies user intent:
+fix_error
+explain_code
+write_feature
+find_usages
+Dynamically builds execution plan
+ 2. Context Harvester (Hybrid RAG)
 
+Retrieval pipeline:
+
+Semantic Search (Top 15)
+Keyword Search (Top 15)
+Reranking → Top 10
+
+Vector Store:
+
+ChromaDB
+
+ Ensures relevant code grounding before reasoning
+
+ 3. Reasoning Agent
+
+Performs:
+
+Root cause analysis
+Dependency understanding
+Fix hypothesis generation
+ 4. Memory Agent
+Stores project-level knowledge
+Improves consistency across interactions
+ 5. Code Writer
+
+Generates structured patches:
+
+{
+  "file": "path/to/file.py",
+  "line_start": 10,
+  "line_end": 20,
+  "old_code": "...",
+  "new_code": "..."
+}
+ 6. Validator
+
+Ensures:
+
+Syntax correctness
+Code compatibility
+Logical consistency
+ 7. Chat Agent
+
+Aggregates:
+
+reasoning output
+patch
+confidence score
+
+Returns final response to user.
+
+ Execution Flow
+User query received via CLI/API
+Intent classified
+Relevant code retrieved (Hybrid RAG)
+Reasoning agent analyzes issue
+Code writer generates patch
+Validator checks correctness
+Final response returned
+ CLI Usage
+devmind interact
+
+Example:
+
+> Fix this error in utils.py line 45
+ Key Features
+ Hybrid RAG (semantic + keyword + rerank)
+ Multi-agent architecture
+ Structured patch generation
+ Parallel agent execution
+ Confidence-based responses
+#  Installation & Setup
 You can set up DevMind globally on your system in a few simple steps. 
 
 ### 1. Download the Project
