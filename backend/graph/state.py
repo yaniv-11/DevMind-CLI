@@ -2,16 +2,8 @@ from typing import Optional, List, Literal, Annotated
 from operator import add
 from pydantic import BaseModel
 
-class TriggerSource(str):
-    DIAGNOSTIC  = "diagnostic"
-    USER_MESSAGE = "user_message"
-    TERMINAL    = "terminal"
-    TEST_RUNNER = "test_runner"
-    HOTKEY      = "hotkey"
-
 class DevMindState(BaseModel):
     # --- Input (set by FastAPI/CLI before graph starts) ---
-    source: str                                    # where trigger came from (single value, not accumulated)
     raw_message: str                               # the user's text or error message
     file_path: Optional[str] = None                # active file in editor
     line_number: Optional[int] = None              # error line

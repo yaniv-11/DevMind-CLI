@@ -98,7 +98,6 @@ def _process_query(message: str, devmind_graph, workspace_root: str):
     
     with console.status(f"[bold green]Agents working in parallel...[/bold green]"):
         initial_state = DevMindState(
-            source="cli",
             raw_message=message,
             workspace_root=workspace_root
         )

@@ -57,7 +57,6 @@ def orchestrator_node(state: DevMindState) -> DevMindState:
     tracker = get_tracker()
     
     trigger_text = f"""
-Source: {state.source}
 Message: {state.raw_message}
 File: {state.file_path or 'unknown'}
 Line: {state.line_number or 'unknown'}

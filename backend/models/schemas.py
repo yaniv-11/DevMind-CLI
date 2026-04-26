@@ -3,7 +3,6 @@ from typing import Optional, List
 from pydantic import BaseModel
 
 class TriggerRequest(BaseModel):
-    source: str
     message: str
     file_path: Optional[str] = None
     line_number: Optional[int] = None

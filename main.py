@@ -127,7 +127,6 @@ devmind_graph = build_graph()
 @app.post("/analyze", response_model=DevMindResponse)
 async def analyze(request: TriggerRequest):
     initial_state = DevMindState(
-        source=request.source,
         raw_message=request.message,
         file_path=request.file_path,
         line_number=request.line_number,
