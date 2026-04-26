@@ -63,6 +63,7 @@ patch
 confidence score
 
 Returns final response to user.
+<img width="1536" height="1024" alt="ChatGPT Image Apr 26, 2026, 11_59_55 AM" src="https://github.com/user-attachments/assets/2bd453c2-99a0-4d51-9585-2a262cd7114f" />
 
  Execution Flow
 User query received via CLI/API
