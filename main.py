@@ -17,6 +17,7 @@ from backend.agents.code_writer       import code_writer_node
 from backend.agents.validator         import validator_node
 from backend.agents.memory_agent      import memory_agent_node
 from backend.agents.chat_agent        import chat_agent_node
+from backend.agents.response          import respond_node
 from backend.models.schemas           import TriggerRequest, DevMindResponse, IndexRequest
 from backend.store.indexer            import index_workspace
 
@@ -29,20 +30,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# ── Respond node ────────────────────────────────────────────────
-def respond_node(state: DevMindState) -> DevMindState:
-    response = {
-        "intent":           state.intent,
-        "confidence":       state.confidence,
-        "summary":          state.task_summary,
-        "root_cause":       state.root_cause,
-        "patch":            state.patch,
-        "validation_passed":state.validation_passed,
-        "validation_issues":state.validation_issues,
-        "confidence_score": state.confidence_score,
-        "context_files":    list({c["file"] for c in (state.context_chunks or [])})
-    }
-    return state.model_copy(update={"response": response})
+
 
 # ── Build LangGraph with Parallel Execution ──────────────────────
 def build_graph():
@@ -127,12 +115,7 @@ devmind_graph = build_graph()
 @app.post("/analyze", response_model=DevMindResponse)
 async def analyze(request: TriggerRequest):
     initial_state = DevMindState(
-        raw_message=request.message,
-        file_path=request.file_path,
-        line_number=request.line_number,
-        surrounding_code=request.surrounding_code,
-        terminal_output=request.terminal_output,
-        workspace_root=request.workspace_root
+        raw_message=request.message
     )
     final_state = devmind_graph.invoke(initial_state)
     return DevMindResponse(**final_state.response)
