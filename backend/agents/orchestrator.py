@@ -42,7 +42,6 @@ Return ONLY this JSON, no explanation:
     ["code_writer", "validator"]
   ],
   "task_summary": "<one sentence>",
-  "parallel_execution": true
 }"""
 
 llm = ChatGroq(
@@ -84,7 +83,6 @@ Terminal output:
             "confidence": 0.5,
             "agent_groups": [["context_harvester"]],
             "task_summary": state.raw_message,
-            "parallel_execution": True
         }
 
     # Log orchestration
